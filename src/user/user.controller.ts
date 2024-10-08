@@ -1,34 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { ApiTags } from "@nestjs/swagger";
+import { SkipThrottle } from "@nestjs/throttler";
+import { SignUpAuthDto } from "src/auth/dto";
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 
+
+@ApiTags('user')
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  create(@Body() signUpDto: SignUpAuthDto) {
+    return this.userService.create(signUpDto);
   }
 
+  @SkipThrottle()
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  findAll(@Query('skip') skip: string, @Query('take') take: string) {
+    return this.userService.findAll(take, skip);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
   }
 }

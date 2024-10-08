@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from '@prisma/client';
+import { SignUpAuthDto } from "src/auth/dto";
+import { UserRepository } from "./repository/user.repository";
+
+
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    private readonly userRepository: UserRepository,
+  ) { }
+
+  async create(signUpDto: SignUpAuthDto): Promise<Omit<User, 'password'>> {
+    const user = this.userRepository.create(signUpDto)
+
+    return user
   }
 
-  findAll() {
-    return `This action returns all user`;
+
+  async findAll(take: string, skip: string): Promise<User[]> {
+    return this.userRepository.findAll(take, skip)
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.userRepository.findOne(id)
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+
+  findByEmail(email: string) {
+    return this.userRepository.findByEmail(email)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+
 }

@@ -1,13 +1,39 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
+import { APP_GUARD } from "@nestjs/core";
+import { JwtModule } from "@nestjs/jwt";
+import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { CommnetModule } from './commnet/commnet.module';
+import { PostModule } from './post/post.module';
+import { PrismaService } from './prisma/prisma.service';
 import { UserModule } from './user/user.module';
-import { FilesModule } from './files/files.module';
-import { CoursesModule } from './courses/courses.module';
 
 @Module({
-  imports: [UserModule, FilesModule, CoursesModule],
+  imports: [
+    JwtModule.register({
+      global: true,
+      secret: "qwer12345",
+      signOptions: { expiresIn: '5m' },
+
+    }),
+    ThrottlerModule.forRoot([{
+      ttl: 60000,
+      limit: 50,
+    }]),
+    UserModule,
+    PostModule,
+    CommnetModule,
+    AuthModule
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard
+    },
+    PrismaService
+
+  ],
 })
-export class AppModule {}
+export class AppModule { }
