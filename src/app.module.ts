@@ -4,8 +4,6 @@ import { JwtModule } from "@nestjs/jwt";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
-import { CommnetModule } from './commnet/commnet.module';
-import { PostModule } from './post/post.module';
 import { PrismaService } from './prisma/prisma.service';
 import { UserModule } from './user/user.module';
 
@@ -22,8 +20,6 @@ import { UserModule } from './user/user.module';
       limit: 50,
     }]),
     UserModule,
-    PostModule,
-    CommnetModule,
     AuthModule
   ],
   controllers: [AppController],
