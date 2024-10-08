@@ -1,0 +1,16 @@
+2024-10-08 04:37:01.972 UTC [2333] LOG:  starting PostgreSQL 15.7 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 12.3.0, 64-bit
+2024-10-08 04:37:01.972 UTC [2333] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-08 04:37:01.975 UTC [2333] FATAL:  could not create lock file "/run/postgresql/.s.PGSQL.5432.lock": No such file or directory
+2024-10-08 04:37:01.978 UTC [2333] LOG:  database system is shut down
+pc2024-10-08 04:37:44.279 UTC [2531] LOG:  starting PostgreSQL 15.7 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 12.3.0, 64-bit
+2024-10-08 04:37:44.279 UTC [2531] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-08 04:37:44.282 UTC [2531] FATAL:  could not create lock file "/run/postgresql/.s.PGSQL.5432.lock": No such file or directory
+2024-10-08 04:37:44.285 UTC [2531] LOG:  database system is shut down
+2024-10-08 04:43:21.341 UTC [1770] LOG:  starting PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 12.3.0, 64-bit
+2024-10-08 04:43:21.342 UTC [1770] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-08 04:43:21.345 UTC [1770] FATAL:  could not create lock file "/run/postgresql/.s.PGSQL.5432.lock": No such file or directory
+2024-10-08 04:43:21.347 UTC [1770] LOG:  database system is shut down
+2024-10-08 04:44:32.507 UTC [2183] LOG:  starting PostgreSQL 16.3 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 12.3.0, 64-bit
+2024-10-08 04:44:32.508 UTC [2183] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-08 04:44:32.511 UTC [2183] FATAL:  could not create lock file "/run/postgresql/.s.PGSQL.5432.lock": No such file or directory
+2024-10-08 04:44:32.513 UTC [2183] LOG:  database system is shut down
